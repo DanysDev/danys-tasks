@@ -11,14 +11,14 @@ export const routes: Routes = [
         title: 'Danys Tasks',
       },
       {
-        path: 'auth',
-        loadChildren: () => import('./pages/auth/auth.routes').then((r) => r.AUTHENTICATION_ROUTES),
-      },
-      {
         path: '',
         redirectTo: 'home',
         pathMatch: 'full'
       }
     ]
+  },
+  {
+    path: 'auth',
+    loadChildren: () => import('./pages/auth/auth.routes').then((r) => r.AUTHENTICATION_ROUTES),
   }
 ];
