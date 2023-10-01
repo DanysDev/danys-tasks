@@ -1,0 +1,15 @@
+<p>home works!</p>
+<button>
+  <a [routerLink]="['/auth']">Login</a>
+</button>
+<button>
+  <a [routerLink]="['/auth/register']">Register</a>
+</button>
+<button (click)="getDataUser()">
+  Datos de Usuario
+</button>
+
+
+<div>
+  Usuario: {{ userData | json }}
+</div>
