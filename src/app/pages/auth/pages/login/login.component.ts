@@ -1,5 +1,5 @@
 import {Component, inject, OnInit} from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from "@angular/material/button";
 import {MatInputModule} from "@angular/material/input";
@@ -11,7 +11,7 @@ import {AuthService} from "../../core/services/auth.service";
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, MatCardModule, MatButtonModule, MatInputModule, ReactiveFormsModule, MatIconModule],
+  imports: [CommonModule, MatCardModule, MatButtonModule, MatInputModule, ReactiveFormsModule, MatIconModule, NgOptimizedImage],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
@@ -24,12 +24,6 @@ export class LoginComponent implements OnInit{
   public hide: boolean = true;
   public form!: FormGroup;
 
-  // public createForm() {
-  //   this.form = this.fb.group({
-  //     email: ['', [Validators.required, Validators.email]],
-  //     password: ['', [Validators.required, Validators.minLength(6)]]
-  //   });
-  // }
 
   public email: FormControl <string | null> = new FormControl('', [Validators.required, Validators.email]);
   protected password: FormControl <string | null> = new FormControl('', [Validators.required, Validators.minLength(6)]);
