@@ -29,4 +29,8 @@ export class HomeComponent {
       console.log(data);
     })
   }
+
+  onLogoutUser() {
+    this.authService.userLogout();
+  }
 }

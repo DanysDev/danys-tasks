@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import {userLoguinGuard} from "./core/guards/user-loguin.guard";
 
 export const routes: Routes = [
   {
@@ -11,6 +12,12 @@ export const routes: Routes = [
         title: 'Danys Tasks',
       },
       {
+        path: 'tasks',
+        loadChildren: () => import('./pages/tasks-page/tasks.routes').then((c) => c.TASKS_ROUTES),
+        canActivate: [userLoguinGuard],
+        title: 'Gestor de Tareas'
+      },
+      {
         path: '',
         redirectTo: 'home',
         pathMatch: 'full'
@@ -20,5 +27,9 @@ export const routes: Routes = [
   {
     path: 'auth',
     loadChildren: () => import('./pages/auth/auth.routes').then((r) => r.AUTHENTICATION_ROUTES),
+  },
+  {
+    path: '**',
+    redirectTo: 'home'
   }
 ];

@@ -8,13 +8,13 @@ import {MatInputModule} from "@angular/material/input";
 import {FormBuilder, ReactiveFormsModule, UntypedFormGroup, Validators} from "@angular/forms";
 import {User} from "../../core/interfaces/user.interface";
 import {AuthService} from "../../core/services/auth.service";
-import {Router} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 import {confirmPasswordValidator} from "../../core/clases/confirm-password-validator";
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatCardModule, MatFormFieldModule, MatIconModule, MatInputModule, ReactiveFormsModule, NgOptimizedImage],
+  imports: [CommonModule, MatButtonModule, MatCardModule, MatFormFieldModule, MatIconModule, MatInputModule, ReactiveFormsModule, NgOptimizedImage, RouterLink],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })

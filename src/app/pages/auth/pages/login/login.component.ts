@@ -5,13 +5,13 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatInputModule} from "@angular/material/input";
 import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {MatIconModule} from "@angular/material/icon";
-import {Router} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 import {AuthService} from "../../core/services/auth.service";
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, MatCardModule, MatButtonModule, MatInputModule, ReactiveFormsModule, MatIconModule, NgOptimizedImage],
+  imports: [CommonModule, MatCardModule, MatButtonModule, MatInputModule, ReactiveFormsModule, MatIconModule, NgOptimizedImage, RouterLink],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
