@@ -2,7 +2,7 @@ import {inject, Injectable} from '@angular/core';
 import {environment} from "../../../../../environments/environment.dev";
 import {User} from "../interfaces/user.interface";
 import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {BehaviorSubject, Observable} from "rxjs";
 import {Router} from "@angular/router";
 
 @Injectable({
@@ -17,6 +17,14 @@ export class AuthService {
   public createUser: string = environment.apiUrl + 'users';
   public loginUser: string = environment.apiUrl + 'auth/login/';
   public loginUserSeccion: string = environment.apiUrl + 'auth/profile/';
+
+  /* Observables */
+  public $isUserLogueIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+
+
+  constructor() {
+    this.$isUserLogueIn.next(!!localStorage.getItem('token'));
+  }
 
 
   /**
@@ -59,8 +67,9 @@ export class AuthService {
    *
    * @return {boolean} Retorna true si el usuario ha iniciado sesión, de lo contrario retorna false.
    */
-  isUserLoguin(): boolean {
-    return !!localStorage.getItem('token');
+  isUserLoguin(): Observable<boolean> {
+    this.$isUserLogueIn.next(!!localStorage.getItem('token'));
+    return this.$isUserLogueIn.asObservable();
   }
 
 
@@ -69,9 +78,11 @@ export class AuthService {
    */
   userLogout(): void {
     localStorage.removeItem('token');
+    this.isUserLoguin();
     const currentUrl = this.router.url;
     if (currentUrl !== '/home') {
       this.router.navigateByUrl('/home').then();
     }
+
   }
 }

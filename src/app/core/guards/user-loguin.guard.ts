@@ -3,12 +3,20 @@ import {AuthService} from "../../pages/auth/core/services/auth.service";
 import {inject} from "@angular/core";
 import Swal from 'sweetalert2';
 
-export const userLoguinGuard: CanActivateFn = (route, state) => {
+
+
+/**
+ * Función que se utiliza como guardia para verificar si el usuario ha iniciado sesión.
+ *
+ * @return {boolean} Valor booleano que indica si el usuario ha iniciado sesión o no.
+ */
+export const userLoguinGuard: CanActivateFn = (): boolean => {
 
   const authService: AuthService = inject(AuthService);
   const router: Router = inject(Router);
 
-  if (!authService.isUserLoguin()) {
+
+  if (!authService.$isUserLogueIn.value) {
     Swal.fire({
       title: 'Necesita iniciar sección para crearse una Tarea',
       showConfirmButton: true,
@@ -23,5 +31,5 @@ export const userLoguinGuard: CanActivateFn = (route, state) => {
     })
   }
 
-  return authService.isUserLoguin();
+  return authService.$isUserLogueIn.value;
 };

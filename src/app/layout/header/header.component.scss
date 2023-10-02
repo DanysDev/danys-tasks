@@ -1,0 +1,69 @@
+.nav {
+  width: 100%;
+  height: 5rem;
+  background-color: #e3e3e7;
+
+  &__menu {
+    height: 100%;
+    padding: 0 2rem;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    &-logo {
+      img {
+        border-radius: 4px;
+        cursor: pointer;
+      }
+    }
+    &-search {
+      height: 100%;
+      display: grid;
+      place-content: center;
+
+      mat-form-field {
+        width: 41.176vw;
+
+        ::ng-deep .mat-mdc-form-field-subscript-wrapper {
+          height: 0;
+        }
+      }
+    }
+    &-user {
+      .user__btn {
+        display: flex;
+        align-items: center;
+        gap: .5rem;
+
+        button {
+          width: 8rem;
+        }
+      }
+      .user__text {
+        display: flex;
+        align-items: center;
+        gap: .5rem;
+
+        h4 {
+          margin: 0;
+        }
+
+        &-avatar {
+          cursor: pointer;
+          border-radius: 50%;
+          background-color: #1a002d;
+          color: #e3e3e7;
+          width: 3rem;
+          height: 3rem;
+
+          font-size: 2rem;
+          font-weight: 700;
+          text-align: center;
+          line-height: 3rem;
+        }
+      }
+    }
+  }
+}

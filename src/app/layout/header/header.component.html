@@ -1,1 +1,30 @@
-<p>header works!</p>
+<nav class="nav">
+  <menu class="nav__menu">
+    <div class="nav__menu-logo">
+      <img ngSrc="assets/imagenes/logos/logo-dany-tasks.png"
+           alt="logo"
+           width="60"
+           height="60"
+           priority="true"
+           [routerLink]="['/']"
+      >
+    </div>
+    <div class="nav__menu-search" *ngIf="isUserLogueIn">
+      <mat-form-field appearance="outline">
+        <mat-label>Buscar una tarea</mat-label>
+        <input type="search" matInput #currentTask (keydown.enter)="onSearchTask(currentTask.value)">
+        <mat-icon matSuffix (click)="onSearchTask(currentTask.value)">search</mat-icon>
+      </mat-form-field>
+    </div>
+    <div class="nav__menu-user">
+      <div class="user__btn" *ngIf="!isUserLogueIn">
+        <button mat-raised-button color="primary" (click)="onAuthRedirect(1)"> Inicio </button>
+        <button mat-stroked-button color="primary" (click)="onAuthRedirect(2)"> Registrate </button>
+      </div>
+      <div class="user__text" *ngIf="isUserLogueIn">
+        <h4> Bienvenid@, {{ userData.name | titlecase }} </h4>
+        <div class="user__text-avatar"> {{ userData.name.charAt(0) + userData.name.charAt(userData.name.length - 1) | uppercase}} </div>
+      </div>
+    </div>
+  </menu>
+</nav>

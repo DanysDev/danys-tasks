@@ -25,9 +25,6 @@ export class LoginComponent implements OnInit{
   public form!: FormGroup;
 
 
-  public email: FormControl <string | null> = new FormControl('', [Validators.required, Validators.email]);
-  protected password: FormControl <string | null> = new FormControl('', [Validators.required, Validators.minLength(6)]);
-
   private createForm() {
     this.form = this.formBuilder.group({
       email: [null, [Validators.required, Validators.email]],
@@ -37,27 +34,19 @@ export class LoginComponent implements OnInit{
 
   onUserLogin() {
     this.authService.getloginUser(this.form.value).subscribe((data) => {
-      console.log(data);
       this.form.reset();
       localStorage.setItem('token', <string>data.access_token);
-      this.router.navigate(['/']).then();
+      this.authService.$isUserLogueIn.next(true);
+      this.router.navigate(['/tasks/tasks']).then();
     })
   }
 
   getErrorMessage() {
-    if (this.email.hasError('required')) {
+    if (this.form.controls['email'].hasError('required')) {
       return 'You must enter a value';
     }
 
-    return this.email.hasError('email') ? 'Not a valid email' : '';
-  }
-
-  sendForm() {
-    const body = {
-      email: this.email.value,
-      password: this.password.value
-    }
-    console.log('datos del body: ', body);
+    return this.form.controls['email'].hasError('email') ? 'Not a valid email' : '';
   }
 
   ngOnInit(): void {
